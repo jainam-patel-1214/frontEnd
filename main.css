@@ -1,0 +1,50 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+#primary{
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+#d1:hover,#d2:hover{
+    cursor: pointer;
+}
+#d1,#d2{
+    margin: 3rem;
+    padding: 10px;
+    border: 2px solid powderblue;
+    border-radius: 15px;
+}
+#d1{
+    color: aquamarine;
+}
+#d2{
+    color: aqua;
+}
+#d3,#d4{
+    /* display: none; */
+    color: white;
+    background-color: transparent;
+    padding: 2rem;
+    margin: auto;
+}
+
+#d5{
+    /* display: none; */
+    cursor: pointer;
+    width: fit-content;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    border: 2px solid powderblue;
+    border-radius: 15px;
+    font-size: x-large;
+    color: aliceblue;
+    padding: 5px 15px;
+}
