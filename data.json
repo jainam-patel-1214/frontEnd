@@ -1,0 +1,15 @@
+{
+    "data":[
+        {
+            "user_creds":{
+                "user_name":"Jimmy",
+                "user_password":"Jimmy"
+            },
+            "user_data":[
+                {"id":1,"task_category":"FrontEnd","task_title":"Todo List making","task_description":"make a good todo list","task_assigned_to":"Jimmy","task_date_created":"2025-10-31","task_date_to_complete":"2025-11-2","priority":"high","set_reminder":true,"task_completed":false,"task_comment":""},
+                {"id":2,"task_category":"Learning","task_title":"Go Learning","task_description":"learning go basics","task_assigned_to":"Jimmy","task_date_created":"2025-10-31","task_date_to_complete":"2025-10-31","priority":"none","set_reminder":false,"task_completed":true,"task_comment":""},
+                {"id":3,"task_category":"BackEnd","task_title":"Backend project","task_description":"make a backend api in go","task_assigned_to":"Jimmy","task_date_created":"2025-10-31","task_date_to_complete":"2025-10-31","priority":"none","set_reminder":false,"task_completed":true,"task_comment":""}
+            ]
+        }
+    ]
+}

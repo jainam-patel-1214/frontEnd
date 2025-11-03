@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO</title>
+    <script src="./jq.js"></script>
+    <script src="./index.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #login_section {
+            display: flex;
+            flex-direction: row;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #login_portrait,
+        #login_form_section {
+            width: 50%;
+        }
+
+        #login_portrait img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        #login_form_section img {
+            height: 100%;
+            width: inherit;
+            object-fit: cover;
+            position: absolute;
+        }
+
+        #form_div {
+            color: white;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(11, 0, 23, 0.85);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #form_envelop {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid white;
+            background-color: rgba(255, 255, 255, 0.216);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        #form_div h2 {
+            margin: 0;
+            font-size: xx-large;
+        }
+
+        #login_form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #login_form input {
+            margin: 1rem;
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 10px;
+            color: white;
+        }
+
+        #login_form input::placeholder {
+            color: rgba(255, 255, 255, 0.461);
+        }
+
+        #login_form button {
+            margin: 1rem;
+            padding: 10px;
+            width: 50%;
+            color: aliceblue;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            background-color: rgba(0, 16, 29, 0.258);
+            backdrop-filter: blur(150px);
+            transition: 0.5s;
+        }
+
+        #login_form button:hover {
+            background-color: rgba(2, 49, 88, 0.258);
+        }
+
+        span {
+            color: aquamarine;
+            cursor: pointer;
+        }
+
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            height: fit-content;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 16px;
+            position: fixed;
+            left: 50%;
+            top: 30px;
+            font-size: 17px;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.5s ease, bottom 0.5s ease;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="toast"></div>
+    <div id="login_section">
+        <div id="login_portrait">
+            <img src="./public/login.jpg" alt="login">
+        </div>
+        <div id="login_form_section">
+            <img src="./public/login.jpg" alt="login">
+            <div id="form_div">
+                <div id="form_envelop">
+                    <h2>Welcome</h3>
+                        <p class="login_msg">Login with Username</p>
+                        <p class="register_msg">Register with Username</p>
+                        <form id="login_form">
+                            <input type="text" hidden value="login" id="form_type">
+                            <input type="text" required id="user_name" placeholder="your todo username here">
+                            <input type="password" required id="user_pwd" placeholder="password here">
+                            <button></button>
+                        </form>
+                        <p class="login_msg">Do not have an account? <span onclick="switchToRegister()">Register
+                                here</span></p>
+                        <p class="register_msg">Already have an account? <span onclick="switchToLogin()">Login
+                                here</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
