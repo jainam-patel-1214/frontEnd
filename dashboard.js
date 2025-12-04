@@ -21,8 +21,8 @@ const quotes = [
     "You don’t have to be great to start, but you have to start to be great. — Zig Ziglar"
 ];
 
-const PendingItem = (props)=>{
-    return(`
+const PendingItem = (props) => {
+    return (`
         <div tdata-index="${props.id}">
             <input type="checkbox" id="delete_task">
             <p hidden class="index">${props.id}</p>
@@ -121,35 +121,74 @@ $(document).ready(function () {
         this.reset();
         resetContent()
     })
-    function debouncer(handler,delay) {
-        let timer;
-        return function (...args) {
-            clearTimeout(timer);
-            timer = setTimeout(()=>{
+    function debouncerWithApiNewReq(handler, delay) {
+        let timer
+        // let requesttoapimade = true
+        return (...args) => {
+            console.log("argss", ...args)
+            if (requesttoapimade) {
                 handler(...args)
-            },delay)
+                requesttoapimade = false
+                return
+            }
+            timer = setTimeout(() => {
+                clearTimeout(timer)
+                requesttoapimade = true
+            }, delay)
+            console.log("bool",requesttoapimade);
+            
         }
     }
-    const searchHandler =(event)=>{
+    const searchHandler = (event) => {
+        setTimeout(() => {
+            const elemList = document.querySelectorAll(`[task_title^="${tempTitle}" i]`)
+            console.log(elemList);
+            document.querySelectorAll("[task_title]").forEach(e => {
+                $(e).hide()
+            })
+            elemList.forEach(E => {
+                $(E).show()
+            })
+        }, 3000)
         let tempTitle = event.target.value.trim()
-        if (tempTitle=='') {
-            document.querySelectorAll("[task_title]").forEach(e=>{
-            $(e).show()
-        })
-        return
+        if (tempTitle == '') {
+            document.querySelectorAll("[task_title]").forEach(e => {
+                $(e).show()
+            })
+            return
         }
-        const elemList = document.querySelectorAll(`[task_title^="${tempTitle}" i]`)
-        console.log(elemList);
-        document.querySelectorAll("[task_title]").forEach(e=>{
-            $(e).hide()
-        })
-        elemList.forEach(E=>{
-            $(E).show()
-        })
-        
     }
-    const searchWithDebounce = debouncer(searchHandler,1000)
+    const searchWithDebounce = debouncerWithApiNewReq(searchHandler, 1000)
     $("#search_inp").on("input", searchWithDebounce)
+    // function debouncer(handler,delay) {
+    //     let timer;
+    //     return function (...args) {
+    //         clearTimeout(timer);
+    //         timer = setTimeout(()=>{
+    //             handler(...args)
+    //         },delay)
+    //     }
+    // }
+    // const searchHandler =(event)=>{
+    //     let tempTitle = event.target.value.trim()
+    //     if (tempTitle=='') {
+    //         document.querySelectorAll("[task_title]").forEach(e=>{
+    //         $(e).show()
+    //     })
+    //     return
+    //     }
+    //     const elemList = document.querySelectorAll(`[task_title^="${tempTitle}" i]`)
+    //     console.log(elemList);
+    //     document.querySelectorAll("[task_title]").forEach(e=>{
+    //         $(e).hide()
+    //     })
+    //     elemList.forEach(E=>{
+    //         $(E).show()
+    //     })
+
+    // }
+    // const searchWithDebounce = debouncer(searchHandler,1000)
+    // $("#search_inp").on("input", searchWithDebounce)
 
 
     $("#clear_filters").click(function () {
@@ -296,32 +335,32 @@ function resetContent() {
                         const dif = d1 - d2
                         const diffInDays = dif / (1000 * 60 * 60 * 24);
                         const obj = {
-                            id:e.id,
-                            task_category:e.task_category,
-                            task_title:e.task_title,
-                            task_assigned_to:e.task_assigned_to,
-                            days:diffInDays
+                            id: e.id,
+                            task_category: e.task_category,
+                            task_title: e.task_title,
+                            task_assigned_to: e.task_assigned_to,
+                            days: diffInDays
                         }
                         elem.innerHTML = PendingItem(obj)
 
                     } else {
                         const obj = {
-                            id:e.id,
-                            task_category:e.task_category,
-                            task_title:e.task_title,
-                            task_assigned_to:e.task_assigned_to,
-                            days:0
+                            id: e.id,
+                            task_category: e.task_category,
+                            task_title: e.task_title,
+                            task_assigned_to: e.task_assigned_to,
+                            days: 0
                         }
                         elem.innerHTML = PendingItem(obj)
                     }
                 } else {
                     const obj = {
-                            id:e.id,
-                            task_category:e.task_category,
-                            task_title:e.task_title,
-                            task_assigned_to:e.task_assigned_to,
-                            days:0
-                        }
+                        id: e.id,
+                        task_category: e.task_category,
+                        task_title: e.task_title,
+                        task_assigned_to: e.task_assigned_to,
+                        days: 0
+                    }
                     elem.innerHTML = PendingItem(obj)
                 }
                 elem.setAttribute("priority", e.priority)
